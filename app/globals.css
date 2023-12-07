@@ -10,8 +10,8 @@
   content: "";
   position: absolute;
   background-color: #d9d7d7;
-  height: 70%;
+  height: 60%;
   width: 1px;
   top: 50%;
-  transform: translateY(-40%);
+  transform: translateY(-45%);
 }

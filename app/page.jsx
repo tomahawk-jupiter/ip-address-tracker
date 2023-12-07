@@ -1,6 +1,9 @@
 import ArrowIcon from "./_components/ArrowIcon";
 import DataField from "./_components/DataField";
 
+console.log("Testing...");
+console.log({ env: process.env.NEXT_PUBLIC_API_KEY });
+
 export default function Home() {
   return (
     <main>
@@ -8,25 +11,24 @@ export default function Home() {
         <div className="bg-mobile h-72 w-full sm:bg-desktop"></div>
         <div className="flex-grow bg-secondary"></div>
 
-        {/* <div className=" flex flex-col center justify-center items-center absolute top-1/3 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full text-center"> */}
         <div className=" flex flex-col center justify-center items-center absolute top-0 w-full text-center">
-          <h1 className="font-medium my-6 text-gray-100 text-2xl">
+          <h1 className="font-medium my-6 text-gray-100 text-2xl lg:text-4xl">
             IP Address Tracker
           </h1>
 
           <div className="w-10/12">
-            <div className="flex rounded-tl-2xl rounded-bl-2xl overflow-hidden shadow-md mb-6 max-w-md mx-auto lg:mb-14">
+            <div className="flex rounded-tl-2xl rounded-bl-2xl rounded-br-2xl overflow-hidden shadow-md mb-6 max-w-md lg:max-w-xl mx-auto lg:mb-14">
               <input
                 className="py-3 px-5 border-none outline-none w-full text-lg text-custom-gray-dark"
                 type="text"
-                placeholder="Enter an IP address..."
+                placeholder="Search for any IP address or domain"
               />
               <button className="bg-black text-white p-6 rounded-tr-2xl rounded-br-2xl">
                 <ArrowIcon />
               </button>
             </div>
 
-            <div className="flex flex-col lg:flex-row lg:justify-evenly bg-white text-black p-2 rounded-2xl mt-4 shadow-md max-w-md lg:max-w-none mx-auto lg:py-8">
+            <div className="flex flex-col lg:flex-row lg:justify-evenly bg-white text-black p-3 rounded-2xl mt-4 shadow-md max-w-md lg:max-w-none mx-auto lg:py-6">
               <DataField label={"IP ADDRESS"} value={"192.212.174.101"} />
               <div className="hidden vertical-line lg:block"></div>
               <DataField label={"LOCATION"} value={"Brooklyn, NY 10001"} />

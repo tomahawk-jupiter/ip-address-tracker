@@ -19,6 +19,8 @@ module.exports = {
         "custom-gray-dark": "#2b2b2b",
       },
       fontSize: {
+        xs: "0.7rem",
+        sm: "0.825rem",
         "2xl": "1.6rem",
       },
       backgroundImage: {

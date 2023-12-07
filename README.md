@@ -45,33 +45,43 @@ Users should be able to:
 
 ### What I learned
 
-Use this section to recap over some of your major learnings while working through this project. Writing these out and providing code samples of areas you want to highlight is a great way to reinforce your own knowledge.
+- Breakpoints with TailwindCSS
 
-To see how you can add code snippets, see below:
+  In the following example the default max width will apply until it hits the `lg` breakpoint, then that style will be applied:
 
-```html
-<h1>Some HTML code I'm proud of</h1>
-```
+  ```jsx
+  <div className="max-w-md lg:max-w-none">
+  ```
 
-```css
-.proud-of-this-css {
-  color: papayawhip;
-}
-```
+- Customizing tailwind default theme. See `tailwind.config.js`
+- Using SVG as a React component rather than using it like an image (ie. in img tags). See `app/_components/ArrowIcon.jsx`
+- Using psuedo elements to add a vertical line decoration:
 
-```js
-const proudOfThisFunc = () => {
-  console.log("🎉");
-};
-```
+  NOTE: you can't add psuedo elements in tailwindCSS (I think?).
+
+  ```css
+  /* globals.css */
+  .vertical-line {
+    position: relative;
+  }
+
+  .vertical-line::after {
+    content: "";
+    position: absolute;
+    background-color: #d9d7d7;
+    height: 70%;
+    width: 1px;
+    top: 50%;
+    transform: translateY(-40%);
+  }
+  ```
 
 ### Continued development
 
-Use this section to outline areas that you want to continue focusing on in future projects. These could be concepts you're still not completely comfortable with or techniques you found useful that you want to refine and perfect.
-
-**Note: Delete this note and the content within this section and replace with your own plans for continued development.**
-
 ### Useful resources
+
+- An excellent [TailwindCSS Cheatsheet](https://nerdcave.com/tailwind-cheat-sheet)
+- Tailwind Docs: [Theme Configuration](https://tailwindcss.com/docs/theme)
 
 ## Author
 
