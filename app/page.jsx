@@ -15,7 +15,7 @@ export default function Home() {
           </h1>
 
           <div className="w-10/12">
-            <div className="flex rounded-tl-2xl rounded-bl-2xl overflow-hidden shadow-md mb-6">
+            <div className="flex rounded-tl-2xl rounded-bl-2xl overflow-hidden shadow-md mb-6 max-w-md mx-auto lg:mb-14">
               <input
                 className="py-3 px-5 border-none outline-none w-full text-lg text-custom-gray-dark"
                 type="text"
@@ -26,10 +26,13 @@ export default function Home() {
               </button>
             </div>
 
-            <div className="bg-white text-black p-2 rounded-2xl mt-4 shadow-md">
+            <div className="flex flex-col lg:flex-row lg:justify-evenly bg-white text-black p-2 rounded-2xl mt-4 shadow-md max-w-md lg:max-w-none mx-auto lg:py-8">
               <DataField label={"IP ADDRESS"} value={"192.212.174.101"} />
+              <div className="hidden vertical-line lg:block"></div>
               <DataField label={"LOCATION"} value={"Brooklyn, NY 10001"} />
+              <div className="hidden vertical-line lg:block"></div>
               <DataField label={"TIMEZONE"} value={"UTC-05:00"} />
+              <div className="hidden vertical-line lg:block"></div>
               <DataField label={"ISP"} value={"SpaceX Starlink"} />
             </div>
           </div>

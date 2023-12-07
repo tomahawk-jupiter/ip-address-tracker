@@ -1,3 +1,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.vertical-line {
+  position: relative;
+}
+
+.vertical-line::after {
+  content: "";
+  position: absolute;
+  background-color: #d9d7d7;
+  height: 70%;
+  width: 1px;
+  top: 50%;
+  transform: translateY(-40%);
+}

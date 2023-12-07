@@ -6,10 +6,14 @@ module.exports = {
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    screens: {
-      sm: "375px",
-    },
     extend: {
+      screens: {
+        sm: "375px",
+        md: "480px",
+      },
+      maxWidth: {
+        xs: "200px",
+      },
       textColor: {
         "custom-gray-light": "#969696",
         "custom-gray-dark": "#2b2b2b",
