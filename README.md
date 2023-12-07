@@ -11,7 +11,6 @@ This is a solution to the [IP address tracker challenge on Frontend Mentor](http
 - [My process](#my-process)
   - [Built with](#built-with)
   - [What I learned](#what-i-learned)
-  - [Continued development](#continued-development)
   - [Useful resources](#useful-resources)
 - [Author](#author)
 - [Acknowledgments](#acknowledgments)
@@ -42,6 +41,8 @@ Users should be able to:
 - [React](https://reactjs.org/) - JS library
 - [Next.js](https://nextjs.org/) - React framework
 - [TailwindCSS](https://tailwindcss.com/)
+- [LeafletJS](https://leafletjs.com/)
+- [IP Geolocation API by IPify](https://geo.ipify.org/)
 
 ### What I learned
 
@@ -75,8 +76,6 @@ Users should be able to:
     transform: translateY(-40%);
   }
   ```
-
-### Continued development
 
 ### Useful resources
 

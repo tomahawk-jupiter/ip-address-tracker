@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+  position: relative;
+  max-width: 1440px;
+  margin: 0 auto;
+}
 .vertical-line {
   position: relative;
 }
@@ -14,4 +19,13 @@
   width: 1px;
   top: 50%;
   transform: translateY(-45%);
+}
+
+#map {
+  /* height: 180px; */
+  /* height: 100vh; */
+  height: calc(100vh - 288px);
+  /* width: 100vw; */
+  width: 100%;
+  z-index: -1;
 }
