@@ -1,14 +1,14 @@
 "use client";
 import { useEffect } from "react";
 
-const Map = () => {
+const Map = ({ latitude, longitude }) => {
   useEffect(() => {
     // const map = L.map("map").setView([51.505, -0.09], 13);
     const map = L.map("map", {
       zoomControl: false,
       maxZoom: 15,
       minZoom: 15,
-    }).setView([51.505, -0.09], 15);
+    }).setView([latitude, longitude], 15);
 
     const tiles = L.tileLayer(
       "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
