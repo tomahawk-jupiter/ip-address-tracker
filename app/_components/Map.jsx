@@ -9,6 +9,12 @@ const Map = ({ latitude, longitude }) => {
       minZoom: 15,
     }).setView([latitude, longitude], 15);
 
+    const customMarker = L.marker([latitude, longitude], {
+      icon: L.icon({
+        iconUrl: "/icon-location.svg",
+      }),
+    }).addTo(map);
+
     const tiles = L.tileLayer(
       "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
       {

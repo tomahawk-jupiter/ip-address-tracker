@@ -28,7 +28,11 @@ Users should be able to:
 
 ### Screenshot
 
-![](./screenshot.jpg)
+![Desktop screenshot](./public/screenshot-desktop.png)
+
+<div style="text-align: center;">
+  <img src="./public/screenshot-mobile.png"/>
+</div>
 
 ### Links
 
@@ -40,11 +44,13 @@ Users should be able to:
 
 - [React](https://reactjs.org/) - JS library
 - [Next.js](https://nextjs.org/) - React framework
-- [TailwindCSS](https://tailwindcss.com/)
-- [LeafletJS](https://leafletjs.com/)
+- [TailwindCSS](https://tailwindcss.com/) - CSS framework
+- [LeafletJS](https://leafletjs.com/) - JS library for drawing maps
 - [IP Geolocation API by IPify](https://geo.ipify.org/)
 
 ### What I learned
+
+#### TailwindCSS
 
 - Breakpoints with TailwindCSS
 
@@ -77,13 +83,23 @@ Users should be able to:
   }
   ```
 
+#### NextJS
+
+- Setup API routes in Next App Router. I did this so I could hide my api key for the Geo location api.
+
 ### Useful resources
 
 - An excellent [TailwindCSS Cheatsheet](https://nerdcave.com/tailwind-cheat-sheet)
 - Tailwind Docs: [Theme Configuration](https://tailwindcss.com/docs/theme)
+- GET & POST api routes in NextJS App Router [example repo](https://github.com/iambstha/blog-post-request-nextjs-app-router/blob/master/app/page.js)
 
 ## Author
 
 - Frontend Mentor - [@tomahawk-jupiter](https://www.frontendmentor.io/profile/tomahawk-jupiter)
 
 ## Acknowledgments
+
+TODO:
+
+1. validate user input to make sure its an ip address, or domain name. Maybe user regex?
+1. Use real geo location api service

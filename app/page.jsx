@@ -99,6 +99,7 @@ export default function Home() {
               placeholder="Search for any IP address or domain"
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
+              required
             />
             <button
               type="submit"
