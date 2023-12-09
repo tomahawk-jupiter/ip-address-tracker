@@ -1,9 +1,9 @@
 import { NextResponse } from "next/server";
 
-const NEXT_PUBLIC_API_KEY = process.env.NEXT_PUBLIC_API_KEY;
+const GEO_API_KEY = process.env.GEO_API_KEY;
 
 export async function GET() {
-  const url = `https://geo.ipify.org/api/v2/country,city?apiKey=${NEXT_PUBLIC_API_KEY}`;
+  const url = `https://geo.ipify.org/api/v2/country,city?apiKey=${GEO_API_KEY}`;
 
   try {
     const response = await fetch(url);
@@ -30,11 +30,11 @@ export async function POST(req, res) {
   const domainRegex = /^(?!:\/\/)([a-zA-Z0-9_-]+\.)+[a-zA-Z]{2,}(\/.*)?$/;
 
   if (ipv4Regex.test(userInput) || ipv6Regex.test(userInput)) {
-    url = `https://geo.ipify.org/api/v2/country,city?apiKey=${NEXT_PUBLIC_API_KEY}&ipAddress=${userInput}`;
+    url = `https://geo.ipify.org/api/v2/country,city?apiKey=${GEO_API_KEY}&ipAddress=${userInput}`;
   }
 
   if (domainRegex.test(userInput)) {
-    url = `https://geo.ipify.org/api/v2/country,city?apiKey=${NEXT_PUBLIC_API_KEY}&domain=${userInput}`;
+    url = `https://geo.ipify.org/api/v2/country,city?apiKey=${GEO_API_KEY}&domain=${userInput}`;
   }
 
   if (!url) return NextResponse.json(null);
