@@ -10,10 +10,12 @@ This is a solution to the [IP address tracker challenge on Frontend Mentor](http
   - [Links](#links)
 - [My process](#my-process)
   - [Built with](#built-with)
-  - [What I learned](#what-i-learned)
+  - [What I learned Using:](#what-i-learned-using)
+    - [TailwindCSS](#tailwindcss)
+    - [NextJS](#nextjs)
+    - [Geo Location](#geo-location)
   - [Useful resources](#useful-resources)
 - [Author](#author)
-- [Acknowledgments](#acknowledgments)
 
 ## Overview
 
@@ -48,7 +50,7 @@ Users should be able to:
 - [LeafletJS](https://leafletjs.com/) - JS library for drawing maps
 - [IP Geolocation API by IPify](https://geo.ipify.org/)
 
-### What I learned
+### What I learned Using:
 
 #### TailwindCSS
 
@@ -87,6 +89,13 @@ Users should be able to:
 
 - Setup API routes in Next App Router. I did this so I could hide my api key for the Geo location api.
 
+#### Geo Location
+
+The location given by the geo location service might not always be accurate, especially for individual users. Why:
+
+- If you have a dynamic IP address it might give the location for the ISP (Internet Service Provider) instead.
+- Geolocation databases used by IP address lookup services may not always be accurate or up to date.
+
 ### Useful resources
 
 - An excellent [TailwindCSS Cheatsheet](https://nerdcave.com/tailwind-cheat-sheet)
@@ -97,9 +106,4 @@ Users should be able to:
 
 - Frontend Mentor - [@tomahawk-jupiter](https://www.frontendmentor.io/profile/tomahawk-jupiter)
 
-## Acknowledgments
-
-TODO:
-
-1. validate user input to make sure its an ip address, or domain name. Maybe user regex?
-1. Use real geo location api service
+[Page Top](#table-of-contents)

@@ -10,16 +10,16 @@ import Map from "./_components/Map";
 //   "http://localhost:3000";
 
 const initialState = {
-  ip: "",
+  ip: "192.212.174.101",
   location: {
-    city: "",
-    region: "",
-    postalCode: "",
-    timezone: "",
-    lat: 0,
-    lng: 0,
+    city: "Brooklyn",
+    region: "NY",
+    postalCode: "10001",
+    timezone: "-05:00",
+    lat: 43.7319759709348,
+    lng: 7.41489295600398,
   },
-  isp: "",
+  isp: "SpaceX Starlink",
 };
 
 export default function Home() {
@@ -29,6 +29,7 @@ export default function Home() {
   const [latitude, setLatitude] = useState(location.lat);
   const [longitude, setLongitude] = useState(location.lng);
   const [inputValue, setInputValue] = useState("");
+  const [errorMessage, setErrorMessage] = useState(null);
 
   useEffect(() => {
     const getData = async () => {
@@ -50,6 +51,8 @@ export default function Home() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    setErrorMessage(null);
+
     try {
       const baseURL = window.location.origin;
       const res = await fetch(`${baseURL}/api`, {
@@ -60,6 +63,11 @@ export default function Home() {
         },
       });
       const resJSON = await res.json();
+
+      if (!resJSON) {
+        setErrorMessage("Oops, something went wrong!");
+        return;
+      }
       setLocationData(resJSON);
       setLatitude(resJSON.location.lat);
       setLongitude(resJSON.location.lng);
@@ -89,6 +97,11 @@ export default function Home() {
         </h1>
 
         <div className="w-10/12">
+          {errorMessage && (
+            <p className="text-red-700 bg-red-300 inline-block font-bold absolute px-2 py-1 left-1/2 transform -translate-x-1/2 translate-y-20">
+              {errorMessage}
+            </p>
+          )}
           <form
             onSubmit={handleSubmit}
             className="flex rounded-tl-2xl rounded-bl-2xl rounded-br-2xl overflow-hidden shadow-md mb-6 max-w-md lg:max-w-xl mx-auto lg:mb-14"
@@ -104,6 +117,7 @@ export default function Home() {
             <button
               type="submit"
               className="bg-black text-white p-6 rounded-tr-2xl rounded-br-2xl"
+              disabled={!inputValue}
             >
               <ArrowIcon />
             </button>
