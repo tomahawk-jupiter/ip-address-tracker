@@ -3,7 +3,6 @@ import { useEffect } from "react";
 
 const Map = ({ latitude, longitude }) => {
   useEffect(() => {
-    // const map = L.map("map").setView([51.505, -0.09], 13);
     const map = L.map("map", {
       zoomControl: false,
       maxZoom: 15,
@@ -22,7 +21,7 @@ const Map = ({ latitude, longitude }) => {
     return () => {
       map.remove();
     };
-  }, []); // Empty dependency array ensures this effect runs only once on mount
+  }, [latitude, longitude]);
 
   return <div id="map"></div>;
 };

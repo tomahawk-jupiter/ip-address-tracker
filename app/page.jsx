@@ -1,57 +1,73 @@
-import React from "react";
+"use client";
+import React, { useEffect, useState } from "react";
 import ArrowIcon from "./_components/ArrowIcon";
 import DataField from "./_components/DataField";
 import Map from "./_components/Map";
 
-console.log("Testing...");
-console.log({ env: process.env.NEXT_PUBLIC_API_KEY });
-// REQUEST_EXAMPLE=`https://geo.ipify.org/api/v2/country?apiKey=${NEXT_PUBLIC_API_KEY}&ipAddress=8.8.8.8`
+// const baseUrl =
+//   process.env.NEXT_PUBLIC_VERCEL_URL ||
+//   process.env.NEXT_PUBLIC_NEXTAUTH_URL ||
+//   "http://localhost:3000";
 
-async function getLocationData(ipAddress) {
-  if (ipAddress) {
-    const res = await fetch(
-      `https://geo.ipify.org/api/v2/country,city?apiKey=${process.env.NEXT_PUBLIC_API_KEY}&ipAddress=${ipAddress}`
-    );
-    return res.json();
-  }
-  const res = await fetch(
-    `https://geo.ipify.org/api/v2/country,city?apiKey=${process.env.NEXT_PUBLIC_API_KEY}`
-  );
-  return res.json();
-}
+const initialState = {
+  ip: "",
+  location: {
+    city: "",
+    region: "",
+    postalCode: "",
+    timezone: "",
+    lat: 0,
+    lng: 0,
+  },
+  isp: "",
+};
 
-export default async function Home() {
-  // const locationData = await getLocationData();
-  const locationData = {
-    ip: "8.8.8.8",
-    location: {
-      country: "US",
-      region: "California",
-      city: "Mountain View",
-      lat: 37.40599,
-      lng: -122.078514,
-      postalCode: "94043",
-      timezone: "-07:00",
-      geonameId: 5375481,
-    },
-    domains: [
-      "0d2.net",
-      "003725.com",
-      "0f6.b0094c.cn",
-      "007515.com",
-      "0guhi.jocose.cn",
-    ],
-    as: {
-      asn: 15169,
-      name: "Google LLC",
-      route: "8.8.8.0/24",
-      domain: "https://about.google/intl/en/",
-      type: "Content",
-    },
-    isp: "Google LLC",
-  };
+export default function Home() {
+  const [locationData, setLocationData] = useState(initialState);
   const { ip, location, isp } = locationData;
-  const { city, region, postalCode, timezone, lat, lng } = location;
+  const { city, region, postalCode, timezone } = location;
+  const [latitude, setLatitude] = useState(location.lat);
+  const [longitude, setLongitude] = useState(location.lng);
+  const [inputValue, setInputValue] = useState("");
+
+  useEffect(() => {
+    const getData = async () => {
+      const baseURL = window.location.origin;
+      try {
+        const res = await fetch(`${baseURL}/api`);
+        const data = await res.json();
+        setLocationData(data);
+        setLatitude(data.location.lat);
+        setLongitude(data.location.lng);
+        return;
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    getData();
+  }, []);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const baseURL = window.location.origin;
+      const res = await fetch(`${baseURL}/api`, {
+        method: "POST",
+        body: JSON.stringify(inputValue),
+        headers: {
+          "content-type": "application/json",
+        },
+      });
+      const resJSON = await res.json();
+      setLocationData(resJSON);
+      setLatitude(resJSON.location.lat);
+      setLongitude(resJSON.location.lng);
+    } catch (error) {
+      console.error(error);
+    }
+    setInputValue("");
+  };
 
   const dataFields = [
     { label: "IP ADDRESS", value: ip },
@@ -62,10 +78,9 @@ export default async function Home() {
 
   return (
     <main className="max-height-screen">
-      {/* <div className="relative h-screen"> */}
       <div className="bg-mobile h-72 w-full sm:bg-desktop"></div>
       <div className="flex-grow bg-secondary">
-        <Map latitude={lat} longitude={lng} />
+        <Map latitude={latitude} longitude={longitude} />
       </div>
 
       <div className=" flex flex-col center justify-center items-center absolute top-0 w-full text-center">
@@ -74,40 +89,26 @@ export default async function Home() {
         </h1>
 
         <div className="w-10/12">
-          <div className="flex rounded-tl-2xl rounded-bl-2xl rounded-br-2xl overflow-hidden shadow-md mb-6 max-w-md lg:max-w-xl mx-auto lg:mb-14">
+          <form
+            onSubmit={handleSubmit}
+            className="flex rounded-tl-2xl rounded-bl-2xl rounded-br-2xl overflow-hidden shadow-md mb-6 max-w-md lg:max-w-xl mx-auto lg:mb-14"
+          >
             <input
               className="py-3 px-5 border-none outline-none w-full text-lg text-custom-gray-dark"
               type="text"
               placeholder="Search for any IP address or domain"
+              value={inputValue}
+              onChange={(e) => setInputValue(e.target.value)}
             />
-            <button className="bg-black text-white p-6 rounded-tr-2xl rounded-br-2xl">
+            <button
+              type="submit"
+              className="bg-black text-white p-6 rounded-tr-2xl rounded-br-2xl"
+            >
               <ArrowIcon />
             </button>
-          </div>
+          </form>
 
           <div className="flex flex-col lg:flex-row lg:justify-evenly bg-white text-black p-3 rounded-2xl mt-4 shadow-md max-w-md lg:max-w-none mx-auto lg:py-6">
-            {/* <DataField label={"IP ADDRESS"} value={"192.212.174.101"} />
-            <div className="hidden vertical-line lg:block"></div>
-            <DataField label={"LOCATION"} value={"Brooklyn, NY 10001"} />
-            <div className="hidden vertical-line lg:block"></div>
-            <DataField label={"TIMEZONE"} value={"UTC-05:00"} />
-            <div className="hidden vertical-line lg:block"></div>
-            <DataField label={"ISP"} value={"SpaceX Starlink"} /> */}
-
-            {/* <DataField label={"IP ADDRESS"} value={locationData.ip} />
-            <div className="hidden vertical-line lg:block"></div>
-            <DataField
-              label={"LOCATION"}
-              value={"Brooklyn, NY 10001"`${locationData.location.city}, ${locationData.location.region} ${locationData.location.postalCode}`}
-            />
-            <div className="hidden vertical-line lg:block"></div>
-            <DataField
-              label={"TIMEZONE"}
-              value={`UTC${locationData.location.timezone}`}
-            />
-            <div className="hidden vertical-line lg:block"></div>
-            <DataField label={"ISP"} value={locationData.isp} /> */}
-
             {dataFields.map((field, index) => (
               <React.Fragment key={index}>
                 <DataField label={field.label} value={field.value} />
@@ -119,7 +120,6 @@ export default async function Home() {
           </div>
         </div>
       </div>
-      {/* </div> */}
     </main>
   );
 }
